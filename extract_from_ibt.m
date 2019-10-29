@@ -1,5 +1,5 @@
 function [D, dt] = extract_from_ibt(fullname, plot_flag)
-% Data as a structure + corresponding time array.
+% Data as a structure + corresponding time step.
 %close all; clear all; fullname='102319_JSH4.ibt'; 
  
 fid=fopen(fullname,'r');
@@ -23,7 +23,7 @@ while ~feof(fid)
     scale=fread(fid,1,'int32');                 %4 bytes: int scale factor  %float not int.
     gain=fread(fid,1,'float');                  %4 bytes: float amplifier gain
     rate=fread(fid,1,'float');                  %4 bytes: float sampling rate, in kHz
-    fread(fid,1,'float');                       %4 bytes: float recording mode – 0 = OFF;  1 = current clamp;  2 = voltage clamp    
+    fread(fid,1,'float');                       %4 bytes: float recording mode â€“ 0 = OFF;  1 = current clamp;  2 = voltage clamp    
     
     % not OK!  Or, I am unsure of what these are.
     dt=fread(fid,1,'float');            %4 bytes: float, time interval between data points -- seems to not be getting set, is always zero
